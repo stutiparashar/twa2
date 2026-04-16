@@ -2,58 +2,11 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Globe, Zap, Star, Lock, Users, TrendingUp } from 'lucide-react'
+import { Users, Star } from 'lucide-react'
 
-const FEATURED_MODULES = [
-  {
-    id: 1,
-    title: 'Ancient Egypt',
-    description: 'Discover the mysteries of pharaohs, pyramids, and hieroglyphics',
-    icon: Globe,
-    difficulty: 'Beginner',
-    participants: 2543,
-    rating: 4.8,
-    badges: 5,
-    color: 'bg-amber-100 dark:bg-amber-950',
-    accentColor: 'text-amber-700 dark:text-amber-300',
-  },
-  {
-    id: 2,
-    title: 'Renaissance Art',
-    description: 'Explore the creative explosion that shaped modern culture',
-    icon: Zap,
-    difficulty: 'Intermediate',
-    participants: 1892,
-    rating: 4.9,
-    badges: 8,
-    color: 'bg-red-100 dark:bg-red-950',
-    accentColor: 'text-red-700 dark:text-red-300',
-  },
-  {
-    id: 3,
-    title: 'Climate Science',
-    description: 'Understand Earth&apos;s climate systems and environmental change',
-    icon: TrendingUp,
-    difficulty: 'Advanced',
-    participants: 3201,
-    rating: 4.7,
-    badges: 6,
-    color: 'bg-green-100 dark:bg-green-950',
-    accentColor: 'text-green-700 dark:text-green-300',
-  },
-  {
-    id: 4,
-    title: 'Space Exploration',
-    description: 'Journey through the cosmos and discover our place in the universe',
-    icon: Star,
-    difficulty: 'Intermediate',
-    participants: 2876,
-    rating: 4.9,
-    badges: 7,
-    color: 'bg-blue-100 dark:bg-blue-950',
-    accentColor: 'text-blue-700 dark:text-blue-300',
-  },
-]
+// Mock data removed - components will fetch from database
+// TODO: Implement database query to fetch featured modules
+const FEATURED_MODULES: any[] = []
 
 export function FeaturedModules() {
   return (

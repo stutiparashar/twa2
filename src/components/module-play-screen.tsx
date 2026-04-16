@@ -44,7 +44,9 @@ interface ModuleCard {
   questions?: ModuleQuestion[]
 }
 
-const MOCK_MODULE = {
+// Mock data removed - components will fetch from database
+// TODO: Implement database query to fetch module data by ID
+const MOCK_MODULE: any = {
   id: '1',
   title: 'Ancient Egypt',
   description: 'Discover the mysteries of pharaohs, pyramids, and hieroglyphics',
@@ -55,55 +57,7 @@ const MOCK_MODULE = {
   participants: 2543,
   rating: 4.8,
   badges: 5,
-  cards: [
-    {
-      id: 1,
-      type: 'content' as const,
-      title: 'The Rise of Egypt',
-      content: 'Ancient Egypt emerged around 3100 BCE with the unification of Upper and Lower Egypt under Pharaoh Narmer. This marked the beginning of the Early Dynastic Period and the formation of one of the world\'s greatest civilizations.',
-      icon: '🏛️',
-    },
-    {
-      id: 2,
-      type: 'question' as const,
-      title: 'Knowledge Check',
-      content: 'Test your understanding of Egyptian history',
-      questions: [
-        {
-          id: 1,
-          question: 'In what year was Upper and Lower Egypt unified?',
-          type: 'multiple-choice',
-          options: ['2000 BCE', '3100 BCE', '1500 BCE', '4000 BCE'],
-          correctAnswer: 1,
-          explanation: 'Upper and Lower Egypt were unified around 3100 BCE under Pharaoh Narmer, marking the beginning of the Early Dynastic Period.',
-          hint: 'Think about the earliest dynasty of Egypt',
-        },
-        {
-          id: 2,
-          question: 'Pharaohs were considered divine rulers.',
-          type: 'true-false',
-          options: ['True', 'False'],
-          correctAnswer: 0,
-          explanation: 'Yes, Pharaohs were viewed as divine or semi-divine figures, which reinforced their authority and justified their power.',
-          hint: 'Consider how Egyptian society viewed their rulers',
-        },
-      ],
-    },
-    {
-      id: 3,
-      type: 'content' as const,
-      title: 'The Pyramids of Giza',
-      content: 'The Great Pyramid of Khufu is one of the Seven Wonders of the Ancient World. Built as a tomb for the pharaoh, it contains approximately 2.3 million limestone blocks, each weighing 2.5 tons on average. The pyramid stood as the world\'s tallest structure for 3,800 years.',
-      icon: '🔺',
-    },
-    {
-      id: 4,
-      type: 'achievement' as const,
-      title: 'Pyramid Builder',
-      content: 'Congratulations! You\'ve completed the first half of this module. You\'re on your way to becoming an Egyptian history expert!',
-      icon: '🏆',
-    },
-  ],
+  cards: [],
 }
 
 export function ModulePlayScreen({ moduleId }: { moduleId: string }) {
@@ -234,7 +188,7 @@ export function ModulePlayScreen({ moduleId }: { moduleId: string }) {
             {/* Question Card */}
             {currentCard.type === 'question' && currentCard.questions && (
               <div className="space-y-6">
-                {currentCard.questions.map((question, index) => (
+                {currentCard.questions.map((question: ModuleQuestion, index: number) => (
                   <div key={question.id} className="space-y-4 border-b border-border pb-6 last:border-0">
                     <div className="flex items-start justify-between gap-4">
                       <h3 className="text-lg font-semibold text-foreground">
@@ -248,7 +202,7 @@ export function ModulePlayScreen({ moduleId }: { moduleId: string }) {
                     {/* Multiple Choice Options */}
                     {question.type === 'multiple-choice' && (
                       <div className="space-y-2">
-                        {question.options?.map((option, optionIndex) => (
+                        {question.options?.map((option: string, optionIndex: number) => (
                           <button
                             key={optionIndex}
                             onClick={() => handleAnswerQuestion(question.id, optionIndex)}
