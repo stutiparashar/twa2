@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import modulesData from '@/data/modules.json'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -36,7 +37,7 @@ interface ModuleQuestion {
 
 interface ModuleCard {
   id: number
-  type: 'content' | 'question' | 'achievement'
+  type: 'content' | 'question' | 'achievement' | 'practical'
   title: string
   content: string
   icon?: string
@@ -68,9 +69,14 @@ export function ModulePlayScreen({ moduleId }: { moduleId: string }) {
   const [showExplanation, setShowExplanation] = useState(false)
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
 
-  const module = MOCK_MODULE
-  const currentCard = module.cards[currentCardIndex]
+  // @ts-ignore
+  const foundModule = modulesData.modules.find((m) => m.id.toString() === moduleId?.toString())
+  const module = foundModule ? { ...foundModule, totalCards: foundModule.cards?.length || 1 } : MOCK_MODULE
+  
+  const currentCard = module.cards?.[currentCardIndex]
   const progressPercentage = ((currentCardIndex + 1) / module.totalCards) * 100
+
+  if (!currentCard) return <div className="p-8 text-center">No cards.</div>
 
   const handleNextCard = () => {
     if (currentCardIndex < module.cards.length - 1) {
@@ -168,6 +174,7 @@ export function ModulePlayScreen({ moduleId }: { moduleId: string }) {
               {currentCard.type === 'content' && '📖'}
               {currentCard.type === 'question' && '❓'}
               {currentCard.type === 'achievement' && '🏆'}
+              {currentCard.type === 'practical' && '📝'}
               {currentCard.title}
             </CardTitle>
           </CardHeader>
@@ -290,6 +297,23 @@ export function ModulePlayScreen({ moduleId }: { moduleId: string }) {
                     )}
                   </div>
                 ))}
+              </div>
+            )}
+
+            {/* Practical Card */}
+            {currentCard.type === 'practical' && (
+              <div className="space-y-6">
+                {currentCard.icon && (
+                  <div className="text-6xl text-center mb-4">{currentCard.icon}</div>
+                )}
+                <p className="text-lg leading-relaxed text-foreground/80 mb-6 font-medium">
+                  {currentCard.content}
+                </p>
+                <div className="rounded-lg border-2 border-primary/50 bg-primary/5 p-8 text-center flex flex-col items-center">
+                  <h4 className="text-xl font-bold mb-2">Practical Exercise</h4>
+                  <p className="text-sm text-foreground/70 mb-6">Complete this hands-on exercise to practice what you learned.</p>
+                  <Button size="lg" className="bg-primary text-primary-foreground px-8 font-bold">Start Exercise</Button>
+                </div>
               </div>
             )}
 
