@@ -18,6 +18,9 @@ export const PERMISSIONS = [
   'manage:roles',
   'approve:proposals',
   'access:admin:dashboard',
+  'create:paths',
+  'edit:paths',
+  'manage:certificates',
 ] as const;
 
 export type Permission = typeof PERMISSIONS[number];
@@ -53,6 +56,9 @@ export const rolePermissions: Record<UserRole, Permission[]> = {
     'manage:roles',
     'approve:proposals',
     'access:admin:dashboard',
+    'create:paths',
+    'edit:paths',
+    'manage:certificates',
   ],
 }
 
