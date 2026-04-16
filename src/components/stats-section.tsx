@@ -1,29 +1,8 @@
 'use client'
 
-import { BarChart3, Award, BookOpen, Users } from 'lucide-react'
-
-const STATS = [
-  {
-    label: 'Active Learners',
-    value: '12.5K+',
-    icon: Users,
-  },
-  {
-    label: 'Learning Modules',
-    value: '500+',
-    icon: BookOpen,
-  },
-  {
-    label: 'Achievements Earned',
-    value: '45K+',
-    icon: Award,
-  },
-  {
-    label: 'Daily Active Users',
-    value: '2.3K+',
-    icon: BarChart3,
-  },
-]
+// Mock data removed - components will fetch from database
+// TODO: Implement database query to fetch platform statistics
+const STATS: any[] = []
 
 export function StatsSection() {
   return (

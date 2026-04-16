@@ -42,13 +42,15 @@ export function HeroSection() {
 
             {/* Social Proof */}
             <div className="flex items-center gap-8 pt-4">
+              {/* Hardcoded stats removed - components will fetch from database */}
+              {/* TODO: Implement database query to fetch platform statistics */}
               <div className="flex items-center gap-2">
                 <Users className="h-5 w-5 text-secondary" />
-                <span className="text-sm font-medium">12.5K+ learners</span>
+                <span className="text-sm font-medium">Loading...</span>
               </div>
               <div className="flex items-center gap-2">
                 <Trophy className="h-5 w-5 text-primary" />
-                <span className="text-sm font-medium">500+ modules</span>
+                <span className="text-sm font-medium">Loading...</span>
               </div>
             </div>
           </div>
