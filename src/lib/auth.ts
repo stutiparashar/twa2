@@ -7,6 +7,7 @@ import type { OAuthConfig } from 'next-auth/providers/oauth'
 import { db } from '@/db'
 import { accounts, sessions, users } from '@/db/schema'
 import bcrypt from 'bcryptjs'
+import { eq } from 'drizzle-orm'
 
 export const authOptions: NextAuthOptions = {
   adapter: DrizzleAdapter(db, {
@@ -35,11 +36,12 @@ export const authOptions: NextAuthOptions = {
         params: {
           grant_type: 'authorization_code',
           response_type: 'code',
+          scope: '',
         },
       },
       token: 'https://meta.wikimedia.org/w/rest.php/oauth2/access_token',
       userinfo: {
-        url: 'https://meta.wikimedia.org/w/rest.php/oauth2/resource',
+        url: 'https://meta.wikimedia.org/w/rest.php/oauth2/resource/profile',
         async request({ tokens, provider }: any) {
           const response = await fetch(provider.userinfo.url!, {
             headers: {
@@ -115,9 +117,23 @@ export const authOptions: NextAuthOptions = {
         token.editCount = user.editCount
       }
 
+      // Fetch fresh role directly from the DB so any administrative changes sync up in real-time
+      if (token.id) {
+        try {
+          const dbUser = await db.query.users.findFirst({
+            where: eq(users.id, token.id as string),
+          })
+          if (dbUser) {
+            token.role = dbUser.role || 'user'
+          }
+        } catch (error) {
+          console.error("Error fetching user role from DB", error)
+        }
+      }
+
       // Handle session updates
       if (trigger === 'update' && session) {
-        token.role = session.user.role
+        token.role = session.user?.role || token.role
       }
 
       return token
