@@ -26,38 +26,9 @@ import {
   TrendingUp,
 } from 'lucide-react'
 
-const MOCK_MODULES = [
-  {
-    id: 1,
-    title: 'Ancient Egypt',
-    status: 'published',
-    author: 'Admin',
-    created: '2024-01-15',
-    participants: 2543,
-    avgScore: 87,
-    views: 12450,
-  },
-  {
-    id: 2,
-    title: 'Renaissance Art',
-    status: 'draft',
-    author: 'Contributor',
-    created: '2024-02-20',
-    participants: 1892,
-    avgScore: 85,
-    views: 9876,
-  },
-  {
-    id: 3,
-    title: 'Climate Science',
-    status: 'pending',
-    author: 'Expert',
-    created: '2024-03-10',
-    participants: 3201,
-    avgScore: 82,
-    views: 15643,
-  },
-]
+// Mock data removed - components will fetch from database
+// TODO: Implement database query to fetch modules for admin dashboard
+const MOCK_MODULES: any[] = []
 
 type ModuleStatus = 'published' | 'draft' | 'pending'
 
@@ -356,11 +327,9 @@ export function AdminModuleEditor() {
 
           <CardContent>
             <div className="space-y-3">
-              {[
-                { title: 'Medieval Japan', author: 'Scholar_123', votes: 45 },
-                { title: 'Modern Physics', author: 'Expert_Contributor', votes: 32 },
-                { title: 'World Religions', author: 'Cultural_Expert', votes: 28 },
-              ].map((proposal, index) => (
+              {/* Mock data removed - components will fetch from database */}
+              {/* TODO: Implement database query to fetch community proposals */}
+              {([] as any[]).map((proposal, index) => (
                 <div key={index} className="flex items-center justify-between gap-4 rounded-lg border border-border p-4 hover:bg-muted/50 transition-colors">
                   <div>
                     <h4 className="font-semibold text-foreground">{proposal.title}</h4>
