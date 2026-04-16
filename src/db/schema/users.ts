@@ -9,6 +9,7 @@ export const users = mysqlTable('users', {
   password: varchar('password', { length: 255 }),
   image: varchar('image', { length: 500 }),
   bio: text('bio'),
+  role: mysqlEnum('role', ['user', 'admin']).default('user').notNull(),
   totalPoints: int('totalPoints').default(0).notNull(),
   rank: int('rank'),
   currentStreak: int('currentStreak').default(0).notNull(),
@@ -38,8 +39,7 @@ export const accounts = mysqlTable('accounts', {
 }))
 
 export const sessions = mysqlTable('sessions', {
-  id: varchar('id', { length: 36 }).primaryKey().$defaultFn(() => randomUUID()),
-  sessionToken: varchar('sessionToken', { length: 255 }).notNull().unique(),
+  sessionToken: varchar('sessionToken', { length: 255 }).primaryKey(),
   userId: varchar('userId', { length: 36 }).notNull().references(() => users.id, { onDelete: 'cascade' }),
   expires: timestamp('expires', { mode: 'date', fsp: 3 }).notNull(),
 }, (table) => ({
