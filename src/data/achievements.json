@@ -1,0 +1,68 @@
+{
+  "achievements": [
+    {
+      "id": 1,
+      "name": "First Steps",
+      "description": "Complete your first learning module",
+      "icon": "rocket",
+      "requirementType": "modules_completed",
+      "requirementValue": 1
+    },
+    {
+      "id": 2,
+      "name": "History Master",
+      "description": "Complete 5 history modules",
+      "icon": "book-open",
+      "requirementType": "modules_completed",
+      "requirementValue": 5
+    },
+    {
+      "id": 3,
+      "name": "On Fire",
+      "description": "Maintain a 7-day learning streak",
+      "icon": "flame",
+      "requirementType": "streak_days",
+      "requirementValue": 7
+    },
+    {
+      "id": 4,
+      "name": "Quiz Champion",
+      "description": "Get 10 perfect quiz scores",
+      "icon": "star",
+      "requirementType": "perfect_quizzes",
+      "requirementValue": 10
+    },
+    {
+      "id": 5,
+      "name": "Social Butterfly",
+      "description": "Add 10 friends",
+      "icon": "users",
+      "requirementType": "friends_count",
+      "requirementValue": 10
+    },
+    {
+      "id": 6,
+      "name": "Expert",
+      "description": "Complete 50 modules",
+      "icon": "award",
+      "requirementType": "modules_completed",
+      "requirementValue": 50
+    },
+    {
+      "id": 7,
+      "name": "Knowledge Seeker",
+      "description": "Earn 10,000 total points",
+      "icon": "target",
+      "requirementType": "points_total",
+      "requirementValue": 10000
+    },
+    {
+      "id": 8,
+      "name": "Perfect Week",
+      "description": "Maintain a 30-day learning streak",
+      "icon": "trending-up",
+      "requirementType": "streak_days",
+      "requirementValue": 30
+    }
+  ]
+}

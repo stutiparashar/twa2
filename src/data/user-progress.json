@@ -1,0 +1,68 @@
+{
+  "userProgress": [
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440011",
+      "moduleId": 1,
+      "status": "completed",
+      "currentCardIndex": 4,
+      "score": 95,
+      "completedAt": "2024-04-14T10:30:00.000Z"
+    },
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440011",
+      "moduleId": 2,
+      "status": "completed",
+      "currentCardIndex": 8,
+      "score": 88,
+      "completedAt": "2024-04-11T14:20:00.000Z"
+    },
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440011",
+      "moduleId": 4,
+      "status": "completed",
+      "currentCardIndex": 6,
+      "score": 92,
+      "completedAt": "2024-04-09T16:45:00.000Z"
+    },
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440011",
+      "moduleId": 3,
+      "status": "in_progress",
+      "currentCardIndex": 3,
+      "score": null,
+      "completedAt": null
+    },
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440001",
+      "moduleId": 1,
+      "status": "completed",
+      "currentCardIndex": 4,
+      "score": 98,
+      "completedAt": "2024-03-20T10:00:00.000Z"
+    },
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440001",
+      "moduleId": 5,
+      "status": "completed",
+      "currentCardIndex": 6,
+      "score": 96,
+      "completedAt": "2024-03-22T14:30:00.000Z"
+    },
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440002",
+      "moduleId": 2,
+      "status": "completed",
+      "currentCardIndex": 8,
+      "score": 97,
+      "completedAt": "2024-03-18T11:00:00.000Z"
+    },
+    {
+      "userId": "550e8400-e29b-41d4-a716-446655440003",
+      "moduleId": 3,
+      "status": "completed",
+      "currentCardIndex": 5,
+      "score": 94,
+      "completedAt": "2024-03-25T15:20:00.000Z"
+    }
+  ]
+}

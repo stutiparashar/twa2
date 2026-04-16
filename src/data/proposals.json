@@ -1,0 +1,44 @@
+{
+  "proposals": [
+    {
+      "id": 1,
+      "title": "Medieval Japan",
+      "description": "Explore the samurai culture, feudal system, and artistic achievements of medieval Japan.",
+      "proposerId": "550e8400-e29b-41d4-a716-446655440012",
+      "category": "History",
+      "votes": 45,
+      "status": "pending",
+      "createdAt": "2024-03-10T14:30:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "Modern Physics",
+      "description": "Discover quantum mechanics, relativity, and the fundamental laws governing our universe.",
+      "proposerId": "550e8400-e29b-41d4-a716-446655440008",
+      "category": "Science",
+      "votes": 32,
+      "status": "pending",
+      "createdAt": "2024-03-08T10:15:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "World Religions",
+      "description": "Learn about the major world religions, their beliefs, practices, and cultural impact.",
+      "proposerId": "550e8400-e29b-41d4-a716-446655440006",
+      "category": "Art & Culture",
+      "votes": 28,
+      "status": "pending",
+      "createdAt": "2024-03-05T16:45:00.000Z"
+    },
+    {
+      "id": 4,
+      "title": "Ancient Egyptian Mythology",
+      "description": "A deep dive into Egyptian gods, goddesses, and religious beliefs.",
+      "proposerId": "550e8400-e29b-41d4-a716-446655440002",
+      "category": "History",
+      "votes": 156,
+      "status": "pending",
+      "createdAt": "2024-02-28T09:00:00.000Z"
+    }
+  ]
+}
