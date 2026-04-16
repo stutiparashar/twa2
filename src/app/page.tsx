@@ -2,6 +2,7 @@
 
 import { Header } from '@/components/header'
 import { HeroSection } from '@/components/hero-section'
+import { FeaturedPaths } from '@/components/featured-paths'
 import { FeaturedModules } from '@/components/featured-modules'
 import { StatsSection } from '@/components/stats-section'
 import { CallToAction } from '@/components/call-to-action'
@@ -12,6 +13,7 @@ export default function Home() {
     <main className="min-h-screen bg-background">
       <Header />
       <HeroSection />
+      <FeaturedPaths />
       <FeaturedModules />
       {/* <StatsSection /> */}
       <CallToAction />
