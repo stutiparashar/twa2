@@ -21,27 +21,37 @@ import {
   TrendingUp,
 } from 'lucide-react'
 
-// Mock data removed - components will fetch from database
-// TODO: Implement database query to fetch user profile data
-const USER_DATA: any = {
-  name: 'Jordan Smith',
-  email: 'jordan.smith@example.com',
-  joinDate: 'Joined March 2024',
-  bio: 'Passionate about learning and sharing knowledge. Currently exploring history and science topics.',
-  totalPoints: 8920,
-  rank: 247,
-  totalBadges: 23,
-  modulesCompleted: 12,
-  currentStreak: 6,
-  longestStreak: 18,
-  achievements: [],
-  recentModules: [],
-  friends: [],
-}
+import { useSession } from 'next-auth/react'
+import { useEffect } from 'react'
 
 export function UserProfile() {
+  const { data: session } = useSession()
+  const user = session?.user as any
+
+  const USER_DATA: any = {
+    name: user?.name || 'Loading profile...',
+    email: user?.email || '',
+    image: user?.image || '',
+    role: user?.role || 'user',
+    joinDate: '',
+    bio: user?.editCount ? `Wikipedia active editor with ${user.editCount} edits.` : '',
+    totalPoints: 0,
+    rank: 'Unranked',
+    totalBadges: 0,
+    modulesCompleted: 0,
+    currentStreak: 0,
+    longestStreak: 0,
+    achievements: [],
+    recentModules: [],
+    friends: [],
+  }
+
   const [isEditing, setIsEditing] = useState(false)
   const [editName, setEditName] = useState(USER_DATA.name)
+
+  useEffect(() => {
+    if (user?.name) setEditName(user.name)
+  }, [user?.name])
 
   return (
     <section className="w-full bg-background py-12 px-4 sm:px-6 lg:px-8">
@@ -52,9 +62,13 @@ export function UserProfile() {
             {/* User Info */}
             <div className="space-y-4 flex-1">
               <div className="flex items-center gap-4">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-4xl font-bold text-primary-foreground">
-                  {USER_DATA.name.charAt(0)}
-                </div>
+                {USER_DATA.image ? (
+                  <img src={USER_DATA.image} alt={USER_DATA.name} className="h-20 w-20 rounded-full object-cover border-4 border-background shadow-sm" />
+                ) : (
+                  <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary text-4xl font-bold text-primary-foreground">
+                    {USER_DATA.name.charAt(0).toUpperCase()}
+                  </div>
+                )}
                 <div>
                   {isEditing ? (
                     <input
@@ -64,7 +78,14 @@ export function UserProfile() {
                       className="mb-2 rounded border border-border bg-background px-2 py-1 text-xl font-bold text-foreground"
                     />
                   ) : (
-                    <h1 className="text-2xl font-bold text-foreground sm:text-3xl">{USER_DATA.name}</h1>
+                    <div className="flex flex-wrap items-center gap-3 mb-1">
+                      <h1 className="text-2xl font-bold text-foreground sm:text-3xl tracking-tight">{USER_DATA.name}</h1>
+                      {user && (
+                        <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-[10px] font-bold text-primary uppercase tracking-widest border border-primary/20">
+                          {USER_DATA.role}
+                        </span>
+                      )}
+                    </div>
                   )}
                   <p className="flex items-center gap-2 text-sm text-foreground/60">
                     <Mail className="h-4 w-4" />
