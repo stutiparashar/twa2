@@ -206,6 +206,67 @@
       "accentColor": "#c2410c",
       "icon": "globe",
       "cards": []
+    },
+    {
+      "id": 9,
+      "title": "Wikipedia Core Policies",
+      "description": "Learn the essential rules for contributing to Wikipedia: Neutral Point of View, Verifiability, and No Original Research.",
+      "difficulty": "Beginner",
+      "category": "Policies",
+      "status": "published",
+      "authorId": "550e8400-e29b-41d4-a716-446655440009",
+      "estimatedTime": "30 min",
+      "participants": 0,
+      "avgScore": 0,
+      "views": 0,
+      "rating": 5.0,
+      "badges": 1,
+      "color": "#10b981",
+      "accentColor": "#047857",
+      "icon": "book-open",
+      "cards": [
+        {
+          "id": 1,
+          "type": "content",
+          "title": "Neutral Point of View (NPOV)",
+          "content": "All Wikipedia articles must be written from a neutral point of view, representing fairly, proportionately, and, as far as possible, without editorial bias, all the significant views that have been published by reliable sources on a topic.",
+          "icon": "⚖️",
+          "sortOrder": 0
+        },
+        {
+          "id": 2,
+          "type": "question",
+          "title": "NPOV Knowledge Check",
+          "content": "Test your understanding of neutral point of view",
+          "icon": "❓",
+          "questions": [
+            {
+              "id": 1,
+              "question": "Which of these best describes Neutral Point of View?",
+              "type": "multiple-choice",
+              "correctAnswer": 1,
+              "explanation": "NPOV requires representing all significant views published by reliable sources fairly and proportionally.",
+              "hint": "Consider how different published views should be handled",
+              "options": [
+                "Writing only positive things about a subject",
+                "Representing all significant published views fairly and proportionally",
+                "Stating one's own personal opinion neutrally",
+                "Refuting all negative claims about a subject"
+              ],
+              "sortOrder": 0
+            }
+          ],
+          "sortOrder": 1
+        },
+        {
+          "id": 3,
+          "type": "practical",
+          "title": "NPOV Practical Exercise",
+          "content": "Read the provided text and identify any statements that violate the neutral point of view policy.",
+          "icon": "📝",
+          "sortOrder": 2
+        }
+      ]
     }
   ]
 }
