@@ -46,19 +46,21 @@ export function AdminModuleEditor() {
     fetchModules()
   }, [])
 
-  const filteredModules =
-    filterStatus === 'all' ? modules : modules.filter((m) => m.status === filterStatus)
-    switch (status) {
-      case 'published':
-        return 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200'
-      case 'draft':
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-950 dark:text-gray-200'
-      case 'pending':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-200'
-      default:
-        return 'bg-gray-100 text-gray-800'
-    }
-  }
+   const filteredModules =
+     filterStatus === 'all' ? modules : modules.filter((m) => m.status === filterStatus);
+
+   const getStatusColor = (status: ModuleStatus): string => {
+     switch (status) {
+       case 'published':
+         return 'bg-green-100 text-green-800 dark:bg-green-950 dark:text-green-200';
+       case 'draft':
+         return 'bg-gray-100 text-gray-800 dark:bg-gray-950 dark:text-gray-200';
+       case 'pending':
+         return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-200';
+       default:
+         return 'bg-gray-100 text-gray-800';
+     }
+   };
 
   const handleDeleteModule = async (id: number) => {
     if (!window.confirm('Are you sure you want to delete this module? This cannot be undone.')) {
