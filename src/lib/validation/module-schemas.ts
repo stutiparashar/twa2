@@ -35,43 +35,57 @@ export const basicInfoSchema = z.object({
   accentColor: z.string().optional()
 })
 
+// Base card schema for passthrough (allows other card types to pass validation)
+const baseCardSchema = z.object({
+  type: z.string(),
+}).passthrough()
+
 // Step 1: Content Cards
 export const contentCardsSchema = z.object({
-  cards: z.array(z.object({
-    type: z.literal('content'),
-    title: z.string().min(1, "Title is required."),
-    content: z.string().min(1, "Content is required.").refine(
-      (val) => val !== '<p></p>',
-      "Content is required."
-    ),
-    icon: z.string().optional(),
-    image: z.string().nullable().optional(),
-    sortOrder: z.number()
-  })).optional()
+  cards: z.array(z.union([
+    z.object({
+      type: z.literal('content'),
+      title: z.string().min(1, "Title is required."),
+      content: z.string().min(1, "Content is required.").refine(
+        (val) => val !== '<p></p>' && val !== '' && val !== '<p><br></p>',
+        "Content is required."
+      ),
+      icon: z.string().optional(),
+      image: z.string().nullable().optional(),
+      sortOrder: z.number()
+    }),
+    baseCardSchema
+  ])).optional()
 })
 
 // Step 2: Quiz Questions
 export const quizQuestionsSchema = z.object({
-  cards: z.array(z.object({
-    type: z.literal('question'),
-    title: z.string().min(1, "Quiz set title is required."),
-    questions: z.array(questionSchema).min(1, "Must have at least one question."),
-    icon: z.string().optional(),
-    image: z.string().nullable().optional(),
-    sortOrder: z.number()
-  })).optional()
+  cards: z.array(z.union([
+    z.object({
+      type: z.literal('question'),
+      title: z.string().min(1, "Quiz set title is required."),
+      questions: z.array(questionSchema).min(1, "Must have at least one question."),
+      icon: z.string().optional(),
+      image: z.string().nullable().optional(),
+      sortOrder: z.number()
+    }),
+    baseCardSchema
+  ])).optional()
 })
 
 // Step 3: Achievements
 export const achievementsSchema = z.object({
-  cards: z.array(z.object({
-    type: z.literal('achievement'),
-    title: z.string().min(1, "Achievement title is required."),
-    icon: z.string().min(1, "Achievement icon is required."),
-    content: z.string().optional(),
-    image: z.string().nullable().optional(),
-    sortOrder: z.number()
-  })).optional()
+  cards: z.array(z.union([
+    z.object({
+      type: z.literal('achievement'),
+      title: z.string().min(1, "Achievement title is required."),
+      icon: z.string().min(1, "Achievement icon is required."),
+      content: z.string().optional(),
+      image: z.string().nullable().optional(),
+      sortOrder: z.number()
+    }),
+    baseCardSchema
+  ])).optional()
 })
 
 // Combined schema for full form validation
