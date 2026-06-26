@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
@@ -46,6 +46,23 @@ export function ModuleWizard({ initialModule, onComplete, onCancel }: ModuleWiza
   const [data, setData] = useState<ModuleFormData>(initialModule || initialData)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  useEffect(() => {
+    if (initialModule) {
+      setData(initialModule)
+      setCurrentStep(0)
+      setErrors({})
+    } else {
+      setData(initialData)
+    }
+  }, [initialModule])
+
+  useEffect(() => {
+    if (initialModule) {
+      setData(initialModule)
+      setCurrentStep(0)
+    }
+  }, [initialModule])
 
   const updateData = (updates: Partial<ModuleFormData>) => {
     setData((prev) => ({ ...prev, ...updates }))
@@ -126,12 +143,16 @@ export function ModuleWizard({ initialModule, onComplete, onCancel }: ModuleWiza
         })
         if (!updateRes.ok) throw new Error('Failed to update module')
         
-        // When editing, we might want to delete all existing cards and recreate them, 
-        // or properly sync. For simplicity, if we recreated a full editing wizard
-        // we'd do a complex sync, but since this is primarily a creation wizard that goes straight to publish...
-        // For MVP, we will assume standard create flow, but if editing, we'll let a specialized endpoint handle sync
-        // Or if it's too complex just delete and recreate to save time.
-        // For now, let's just assume creation logic here.
+        // Delete all existing cards before recreating
+        const cardsRes = await fetch(`/api/admin/modules/${moduleId}/cards`)
+        if (cardsRes.ok) {
+          const existingCards = await cardsRes.json()
+          for (const card of existingCards) {
+            await fetch(`/api/admin/modules/${moduleId}/cards/${card.id}`, {
+              method: 'DELETE'
+            })
+          }
+        }
       }
 
       if (!moduleId) throw new Error('No module ID available')
